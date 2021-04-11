@@ -68,6 +68,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .links > a.top_headr {
+                font-size: 24px;
+            }
         </style>
     </head>
     <body>
@@ -77,23 +81,26 @@
         </figure>
     </div> -->
 
-        <div class="container">
-            <div class="col-sm">
+        <!-- <div class="container">
+            <div class="col-sm"> -->
                 <div class="position-ref full-height">
                     <div class="flex-center">
                         <!-- ヘッダー -->
                         <div class="top-left links  full-height">
                             <!-- <a href="{{ url('/') }}">Fising</a> -->
                             <a href="{{ url('/') }}">
-                                <img src="{{URL::to('/')}}/storage/fishinglogo.jpg" style="
-                                width: 150px; height: 100px; margin-top: -20px;" >
+                                <img src="/img/ルアーアイコン2.svg" style="
+                                width: 100px; height: 80px;">
                             </a>
-                            <a href="{{url('/fishing/index')}}" class="btn btn-info">掲示板</a>
 
+                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a>
+                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">掲示板</a>
+                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">みんなの釣果</a>
+                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a>
                         </div>
 
                         @if (Route::has('login'))
-                            <div class="top-right links  full-height">
+                            <div class="top-right links full-height">
                                 @auth
                                     <a href="{{ url('/home') }}">Home</a>
                                 @else
@@ -106,12 +113,15 @@
                             </div>
                         @endif
                     </div>
+                <!-- </div>
+            </div> -->
+            <div class="container">
+                <div class="col-sm">
+                    <div class="row" style="margin-top: 150px; font-family: serif;">
+                        @yield('main')
+                    </div>
                 </div>
             </div>
-
-            <div class="row" style="margin-top: 50px;">
-                @yield('main')
-            </div>
-        </div>
-    </body>
+        </body>
+    </div>
 </html>

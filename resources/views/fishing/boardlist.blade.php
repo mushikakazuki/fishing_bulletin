@@ -1,4 +1,4 @@
-@extends('layouts.fishing_template');
+@extends('layouts.fishing_template')
 
 @section('main')
 
