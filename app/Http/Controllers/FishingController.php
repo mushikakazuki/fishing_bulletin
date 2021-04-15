@@ -6,6 +6,8 @@ use App\Models\bulletin_board;
 
 use Illuminate\Http\Request;
 
+
+
 use Illuminate\Support\Facades\DB;
 use App\Services\Fishing;
 
@@ -16,16 +18,26 @@ class FishingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data_all = DB::table('bulletin_boards')->get();
+        $tag_name = '';
+
+        // dd($request->tag);
+        if(!empty($request->tag)) {
+            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(4);;
+
+            $tag_name = Fishing::tag_name($request->tag);
+        }
+        else {
+            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(4);
+        }
 
         // タグ名変更（本来はオブジェクトの中に入れたほうが後々楽になるよ）
         foreach($data_all as $data) {
             $data->tag_id = Fishing::tag_name($data->tag_id);
         }
 
-        return view('fishing.boardlist', compact('data_all'));
+        return view('fishing.boardlist', compact('data_all','tag_name'));
     }
 
     /**

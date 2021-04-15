@@ -13,7 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #fffaf0;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -72,6 +72,37 @@
             .links > a.top_headr {
                 font-size: 24px;
             }
+
+            h4.card-title{
+                color: #a0522d;
+            }
+
+            p.tag {
+                position: relative;
+                display: inline-block;
+                margin: 0 .6em .6em .6em;
+                padding: .6em .6em .6em 1.2em;
+                line-height: 1;
+                color: #000;
+                text-decoration: none;
+                background-color: #dcdcdc;
+            }
+            p.tag:before {
+                position: absolute;
+                top: 0;
+                left: -1em;
+                content: '';
+                border-width: 1.1em 1em 1.1em 0;
+                border-style: solid;
+                border-color: transparent #dcdcdc transparent transparent;
+            }
+            p.tag:after {
+                position: absolute;
+                top: center;
+                left: 0;
+                content: '●';
+                color: #000;
+            }
         </style>
     </head>
     <body>
@@ -94,8 +125,8 @@
                             </a>
 
                             <a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a>
-                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">掲示板</a>
-                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">みんなの釣果</a>
+                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a>
+                            <!-- <a href="{{url('/fishing/index')}}" class="text-dark top_headr">みんなの釣果</a> -->
                             <a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a>
                         </div>
 
@@ -117,7 +148,7 @@
             </div> -->
             <div class="container">
                 <div class="col-sm">
-                    <div class="row" style="margin-top: 150px; font-family: serif;">
+                    <div class="row" style="margin-top: 120px; font-family: serif;">
                         @yield('main')
                     </div>
                 </div>

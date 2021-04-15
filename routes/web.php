@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('fishing.fishing_top');
 });
 
-Route::get('fishing/index', 'FishingController@index');
+Route::get('fishing/index/', 'FishingController@index')->name('fishing.index');
 
 Route::group(['prefix' => "fishing", 'middleware' => "auth"], function() {
     Route::get('create','FishingController@create')->name('Fishing.create');
