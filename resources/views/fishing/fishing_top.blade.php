@@ -2,7 +2,7 @@
 
 @section('main')
     <div>
-        <header>
+        <header class="mt-4">
             <div class="header-content">
                 釣りを今まで以上に楽しいものに<br>
                 新たな釣りコミュニティ

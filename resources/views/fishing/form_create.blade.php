@@ -7,9 +7,12 @@
             <form action="{{ route('Fishing.store') }}" method="POST">
                 @csrf
                 <h2>title</h2>
-                <input class="form-control" name="title" type="text">
+                <input class="form-control @error('title') is-invalid @enderror" name="title" type="text"　>
+                @error('title')
+                    <strong class="error_message">※{{ $message }}</strong>
+                @enderror
                 <br>
-                <h2>tag</h2>
+                <h2 class="mt-3">tag</h2>
                 <select name="tag" class="form-control" style="width: 15vw;">
                     <option>釣果</option>
                     <option>釣友</option>

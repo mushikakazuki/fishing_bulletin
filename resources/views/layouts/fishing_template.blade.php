@@ -107,7 +107,7 @@
 
             /* メインの中のスタイル */
             div.maincontent{
-                margin-top: 120px;
+                margin-top: 60px;
                 font-family: serif;
             }
 
@@ -149,6 +149,12 @@
                 letter-spacing:5px;
                 color:#fff;
                 font-family:"MS Pゴシック",sans-serif;
+            }
+
+            .error_message{
+                font-family:"MS Pゴシック",sans-serif;
+                font-size: 20px;
+                color: #dc3545;
             }
         </style>
     </head>

@@ -58,6 +58,10 @@ class FishingController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|max:50',
+        ]);
+
         $bulletin_board = new bulletin_board();
 
         $tag_id = Fishing::tag_name_change_id($request->tag);
