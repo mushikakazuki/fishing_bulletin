@@ -13,7 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fffaf0;
+                background-color: #ffffd2;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -77,6 +77,7 @@
                 color: #a0522d;
             }
 
+            /* tagスタイル */
             p.tag {
                 position: relative;
                 display: inline-block;
@@ -102,6 +103,52 @@
                 left: 0;
                 content: '●';
                 color: #000;
+            }
+
+            /* メインの中のスタイル */
+            div.maincontent{
+                margin-top: 120px;
+                font-family: serif;
+            }
+
+            /* top画面のカードの幅指定 */
+            .card-style{
+                width: 16rem;
+            }
+
+            /* カード説明開始位置指定 */
+            .card-description{
+                /* margin: 200px 0px */
+            }
+
+            header {
+                position: relative;
+                height: 50vh;
+                background: url(/img/top_image_2.jpg) center / cover;
+                background-position: 50% 60%;
+            }
+
+            header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: rgba(0,0,0,0.5);
+            }
+
+            .header-content {
+                position: absolute;
+                top: 10%;
+                left: 5%;
+                /* transform: translate(-50%, -50%); */
+                font-family:sans-serif;
+                font-size:30px;
+                font-weight:bold;
+                letter-spacing:5px;
+                color:#fff;
+                font-family:"MS Pゴシック",sans-serif;
             }
         </style>
     </head>
@@ -146,13 +193,9 @@
                     </div>
                 <!-- </div>
             </div> -->
-            <div class="container">
-                <div class="col-sm">
-                    <div class="row" style="margin-top: 120px; font-family: serif;">
-                        @yield('main')
-                    </div>
-                </div>
-            </div>
+
+        </div>
+        @yield('main')
         </body>
     </div>
 </html>

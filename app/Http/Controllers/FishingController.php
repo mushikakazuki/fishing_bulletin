@@ -79,7 +79,13 @@ class FishingController extends Controller
      */
     public function show($id)
     {
-        //
+        $display_info = DB::table('bulletin_boards')->where('id', $id)->first();
+
+        $display_info->tag_name = Fishing::tag_name($display_info->tag_id);
+
+        $contents = DB::table('bulletin_board_contents')->where('parent_id', $id)->get();
+
+        return view('fishing.chat', compact('display_info','contents'));
     }
 
     /**

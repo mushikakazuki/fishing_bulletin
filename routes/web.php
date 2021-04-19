@@ -24,7 +24,7 @@ Route::get('fishing/index/', 'FishingController@index')->name('fishing.index');
 Route::group(['prefix' => "fishing", 'middleware' => "auth"], function() {
     Route::get('create','FishingController@create')->name('Fishing.create');
     Route::post('store','FishingController@store')->name('Fishing.store');
-    // Route::get('show/{id}','ContactFormController@show')->name('contact.show');
+    Route::get('show/{id}','FishingController@show')->name('Fishing.show');
     // Route::get('edit/{id}','ContactFormController@edit')->name('contact.edit');
     // Route::post('update/{id}','ContactFormController@update')->name('contact.update');
     Route::post('destroy/{id}','FishingController@destroy')->name('fishing.destroy');
