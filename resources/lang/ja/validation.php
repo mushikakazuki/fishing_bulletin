@@ -17,16 +17,16 @@ return [
     'active_url'           => ':attributeには有効なURLを指定してください。',
     'after'                => ':attributeには:date以降の日付を指定してください。',
     'after_or_equal'       => ':attributeには:dateかそれ以降の日付を指定してください。',
-    'alpha'                => ':attributeには英字のみからなる文字列を指定してください。',
-    'alpha_dash'           => ':attributeには英数字・ハイフン・アンダースコアのみからなる文字列を指定してください。',
-    'alpha_num'            => ':attributeには英数字のみからなる文字列を指定してください。',
+    'alpha'                => ':attributeには英字のみからなる文字を指定してください。',
+    'alpha_dash'           => ':attributeには英数字・ハイフン・アンダースコアのみからなる文字を指定してください。',
+    'alpha_num'            => ':attributeには英数字のみからなる文字を指定してください。',
     'array'                => ':attributeには配列を指定してください。',
     'before'               => ':attributeには:date以前の日付を指定してください。',
     'before_or_equal'      => ':attributeには:dateかそれ以前の日付を指定してください。',
     'between'              => [
         'numeric' => ':attributeには:min〜:maxまでの数値を指定してください。',
         'file'    => ':attributeには:min〜:max KBのファイルを指定してください。',
-        'string'  => ':attributeには:min〜:max文字の文字列を指定してください。',
+        'string'  => ':attributeには:min〜:max文字の文字を指定してください。',
         'array'   => ':attributeには:min〜:max個の要素を持つ配列を指定してください。',
     ],
     'boolean'              => ':attributeには真偽値を指定してください。',
@@ -49,11 +49,11 @@ return [
     'ip'                   => ':attributeには正しい形式のIPアドレスを指定してください。',
     'ipv4'                 => ':attributeには正しい形式のIPv4アドレスを指定してください。',
     'ipv6'                 => ':attributeには正しい形式のIPv6アドレスを指定してください。',
-    'json'                 => ':attributeには正しい形式のJSON文字列を指定してください。',
+    'json'                 => ':attributeには正しい形式のJSON文字を指定してください。',
     'max'                  => [
         'numeric' => ':attributeには:max以下の数値を指定してください。',
         'file'    => ':attributeには:max KB以下のファイルを指定してください。',
-        'string'  => ':attributeには:max文字以下の文字列を指定してください。',
+        'string'  => ':attributeには:max文字以下の文字を指定してください。',
         'array'   => ':attributeには:max個以下の要素を持つ配列を指定してください。',
     ],
     'mimes'                => ':attributeには:valuesのうちいずれかの形式のファイルを指定してください。',
@@ -61,7 +61,7 @@ return [
     'min'                  => [
         'numeric' => ':attributeには:min以上の数値を指定してください。',
         'file'    => ':attributeには:min KB以上のファイルを指定してください。',
-        'string'  => ':attributeには:min文字以上の文字列を指定してください。',
+        'string'  => ':attributeには:min文字以上の文字を指定してください。',
         'array'   => ':attributeには:min個以上の要素を持つ配列を指定してください。',
     ],
     'not_in'               => ':attributeには:valuesのうちいずれとも異なる値を指定してください。',
@@ -79,10 +79,10 @@ return [
     'size'                 => [
         'numeric' => ':attributeには:sizeを指定してください。',
         'file'    => ':attributeには:size KBのファイルを指定してください。',
-        'string'  => ':attributeには:size文字の文字列を指定してください。',
+        'string'  => ':attributeには:size文字の文字を指定してください。',
         'array'   => ':attributeには:size個の要素を持つ配列を指定してください。',
     ],
-    'string'               => ':attributeには文字列を指定してください。',
+    'string'               => ':attributeには文字を指定してください。',
     'timezone'             => ':attributeには正しい形式のタイムゾーンを指定してください。',
     'unique'               => 'その:attributeはすでに使われています。',
     'uploaded'             => ':attributeのアップロードに失敗しました。',
@@ -102,6 +102,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+
         ],
     ],
 
@@ -116,6 +117,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'title' => 'タイトル',
+        'content' => '投稿内容'
+    ],
 
 ];

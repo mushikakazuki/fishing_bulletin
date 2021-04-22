@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bulletin_board;
-
+use App\Models\bulletin_board_contents;
 use Illuminate\Http\Request;
 
 
@@ -58,19 +58,31 @@ class FishingController extends Controller
      */
     public function store(Request $request)
     {
+        // 入力チェック
         $validatedData = $request->validate([
             'title' => 'required|max:50',
+            'tag' => 'required',
+            'content' => 'required|max:500'
         ]);
 
         $bulletin_board = new bulletin_board();
 
-        $tag_id = Fishing::tag_name_change_id($request->tag);
-
         $bulletin_board->user_id = 1;
         $bulletin_board->title = $request->title;
-        $bulletin_board->tag_id = $tag_id;
+        $bulletin_board->tag_id = $request->tag;
 
         $bulletin_board->save();
+
+        // この取得方法だと、同時に追加時ずれる可能性あり
+        $id = bulletin_board::max('id');
+
+        $bulletin_board_contents = new bulletin_board_contents();
+        $bulletin_board_contents->parentid = intval($id);
+        $bulletin_board_contents->content = $request->content;
+        $bulletin_board_contents->user_id = 1;
+        $bulletin_board_contents->responseid = 0;
+
+        $bulletin_board_contents->save();
 
         return redirect('fishing/index');
     }

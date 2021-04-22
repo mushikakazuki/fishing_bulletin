@@ -3,24 +3,46 @@
 @section('main')
 <div class="container">
     <div class="row maincontent">
-        <div class="col">
-            <form action="{{ route('Fishing.store') }}" method="POST">
+        <div class="col-8 mx-auto">
+            <form action="{{ route('Fishing.store') }}" method="POST" id="formBox">
+                <h1 class="pt-3 pl-4">新規作成</h1>
                 @csrf
-                <h2>title</h2>
-                <input class="form-control @error('title') is-invalid @enderror" name="title" type="text"　>
-                @error('title')
-                    <strong class="error_message">※{{ $message }}</strong>
-                @enderror
-                <br>
-                <h2 class="mt-3">tag</h2>
-                <select name="tag" class="form-control" style="width: 15vw;">
-                    <option>釣果</option>
-                    <option>釣友</option>
-                    <option>雑談</option>
-                    <option>質問</option>
-                    <option>その他</option>
-                </select>
-                <button type="submit" class="btn btn-primary"  style="margin-top: 20px;">新規作成</button>
+                <div class="form_position">
+                    <h2 class="form-title d-inline-block">タイトル</h2>
+                    <div class="d-inline-block error_message">※必須</div>
+                    <input class="form-control @error('title') is-invalid @enderror col-6" name="title" type="text" placeholder="タイトルを入力してください" value="{{ old('title') }}">
+                    @error('title')
+                        <strong class="error_message d-block">※{{ $message }}</strong>
+                    @enderror
+
+                    <h2 class="mt-4 form-title d-inline-block">タグ設定</h2>
+                    <div class="d-inline-block error_message">※必須</div>
+
+                    <select name="tag" class="form-control @error('tag') is-invalid @enderror" style="width: 15vw;">
+                        <option value="">-- 選択してください --</option>
+                        <option value="1" @if(old('tag') === "1") selected @endif>釣果</option>
+                        <option value="2" @if(old('tag') === "2") selected @endif>釣友</option>
+                        <option value="3" @if(old('tag') === "3") selected @endif>雑談</option>
+                        <option value="4" @if(old('tag') === "4") selected @endif>質問</option>
+                        <option value="5" @if(old('tag') === "5") selected @endif>その他</option>
+                    </select>
+
+                    <div>
+                        @error('tag')
+                            <strong class="error_message">※{{ $message }}</strong>
+                        @enderror
+                    </div>
+
+                    <h2 class="mt-4 d-inline-block form-title">投稿内容</h2>
+                    <div class="d-inline-block error_message">※必須</div>
+                    <textarea class="form-control @error('content') is-invalid @enderror col-10 textarea" name="content" type="text">{{ old('content') }}</textarea>
+                    @error('content')
+                        <strong class="error_message">※{{ $message }}</strong>
+                    @enderror
+                    <div>
+                    <button type="submit" class="btn btn-primary pr-4 pl-4" style="margin-top: 20px;">作成</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

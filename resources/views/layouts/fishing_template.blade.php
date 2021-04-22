@@ -107,7 +107,7 @@
 
             /* メインの中のスタイル */
             div.maincontent{
-                margin-top: 60px;
+                margin-top: 40px;
                 font-family: serif;
             }
 
@@ -156,6 +156,26 @@
                 font-size: 20px;
                 color: #dc3545;
             }
+
+            #formBox{
+                background-color: #faf0e6;
+                height: 78vh;
+                border-radius: 30px;
+            }
+
+            .form_position{
+                padding-top: 30px;
+                padding-left: 120px;
+            }
+
+            .textarea{
+                height: 150px !important;
+                resize: none;
+            }
+
+            .form-title{
+                margin-bottom: 0px !important;
+            }
         </style>
     </head>
     <body>
@@ -197,10 +217,7 @@
                             </div>
                         @endif
                     </div>
-                <!-- </div>
-            </div> -->
-
-        </div>
+                </div>
         @yield('main')
         </body>
     </div>

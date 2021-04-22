@@ -3,7 +3,7 @@
 @section('main')
     <div>
         <header class="mt-4">
-            <div class="header-content">
+            <div class="header-content" style="color: #f0f2f5;">
                 釣りを今まで以上に楽しいものに<br>
                 新たな釣りコミュニティ
             </div>
