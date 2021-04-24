@@ -70,6 +70,9 @@ class FishingController extends Controller
         $bulletin_board->user_id = 1;
         $bulletin_board->title = $request->title;
         $bulletin_board->tag_id = $request->tag;
+        $bulletin_board->isClosed = FALSE;
+        $bulletin_board->isDeleted = FALSE;
+        $bulletin_board->tag_id = $request->tag;
 
         $bulletin_board->save();
 
@@ -79,6 +82,7 @@ class FishingController extends Controller
         $bulletin_board_contents = new bulletin_board_contents();
         $bulletin_board_contents->parentid = intval($id);
         $bulletin_board_contents->content = $request->content;
+        $bulletin_board_contents->isDeleted = FALSE;
         $bulletin_board_contents->user_id = 1;
         $bulletin_board_contents->responseid = 0;
 
