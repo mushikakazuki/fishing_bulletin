@@ -21,12 +21,14 @@ class FishingController extends Controller
     public function index(Request $request)
     {
         $tag_name = '';
+        $tag = '';
 
         // dd($request->tag);
         if(!empty($request->tag)) {
             $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(4);;
 
             $tag_name = Fishing::tag_name($request->tag);
+            $tag = $request->tag;
         }
         else {
             $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(4);
@@ -37,7 +39,7 @@ class FishingController extends Controller
             $data->tag_id = Fishing::tag_name($data->tag_id);
         }
 
-        return view('fishing.boardlist', compact('data_all','tag_name'));
+        return view('fishing.boardlist', compact('data_all','tag_name','tag'));
     }
 
     /**

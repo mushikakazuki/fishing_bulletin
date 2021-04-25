@@ -119,7 +119,8 @@ return [
 
     'attributes' => [
         'title' => 'タイトル',
-        'content' => '投稿内容'
+        'content' => '投稿内容',
+        'tag' => 'タグ'
     ],
 
 ];

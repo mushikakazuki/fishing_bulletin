@@ -11,11 +11,11 @@
                     <form action="" method="GET" class="d-inline-block">
                         <select name="tag" class="form-control d-inline-block" style="width: 15vw;">
                             <option value="">選択してください</option>
-                            <option value="1">釣果</option>
-                            <option value="2">釣友</option>
-                            <option value="3">雑談</option>
-                            <option value="4">質問</option>
-                            <option value="5">その他</option>
+                            <option value="1" @if($tag === '1') selected @endif>釣果</option>
+                            <option value="2" @if($tag === '2') selected @endif>釣友</option>
+                            <option value="3" @if($tag === '3') selected @endif>雑談</option>
+                            <option value="4" @if($tag === '4') selected @endif>質問</option>
+                            <option value="5" @if($tag === '5') selected @endif>その他</option>
                         </select>
 
                         <input type="submit" value="絞り込み" class="btn btn-outline-info mr-2"></input>
