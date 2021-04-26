@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/button_effects.css') }}">
 
         <!-- Styles -->
         <style>
@@ -81,7 +82,8 @@
             p.tag {
                 position: relative;
                 display: inline-block;
-                margin: 0 .6em .6em .6em;
+                margin: 0 .6em;
+                /* margin-left: .6em; */
                 padding: .6em .6em .6em 1.2em;
                 line-height: 1;
                 color: #000;
@@ -175,6 +177,10 @@
 
             .form-title{
                 margin-bottom: 0px !important;
+            }
+
+            .card-title {
+                width: 200px;
             }
         </style>
     </head>

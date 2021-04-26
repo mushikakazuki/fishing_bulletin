@@ -30,14 +30,23 @@
                     <div class="mb-2">※現在{{$tag_name}}で絞り込みを行っています。<br>解除する際は選択してくださいの状態で絞り込みをしてください。</div>
                 @endif
 
-                @foreach($data_all as $data)
-                    <div class="card mb-1">
-                        <div class="card-body" style="background-color: #f0ffff;">
-                            <p class="tag">{{$data->tag_id}}</p><br>
-                            <a href="show/<?php echo $data->id?>">{{$data->title}}</a>
-                            <!-- <h6 class="d-inline-block">{{$data->title}}</h6> -->
+                <!-- hoverあり -->
+                @foreach($data_all as $index => $data)
+                <div class="card mb-3 d-inline-block @if($index % 2 === 0) mr-4 @endif" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                        <img src="{{ asset($data->img)}}" alt="img" class="card-img" style="height: 100%;">
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body button-4">
+                            <div class="eff-4"></div>
+                                <p class="tag">{{$data->tag_name}}</p>
+                                <h5 class="card-title d-inline-block mr-2 pt-2 card-title">{{$data->title}}</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to </p>
+                            </div>
                         </div>
                     </div>
+                </div>
                 @endforeach
 
                 <div class="mt-3">
