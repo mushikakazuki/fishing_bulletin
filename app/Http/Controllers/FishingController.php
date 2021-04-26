@@ -23,20 +23,31 @@ class FishingController extends Controller
         $tag_name = '';
         $tag = '';
 
-        // dd($request->tag);
         if(!empty($request->tag)) {
-            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(4);;
+            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(8);;
 
             $tag_name = Fishing::tag_name($request->tag);
             $tag = $request->tag;
         }
         else {
-            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(4);
+            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(8);
         }
 
         // タグ名変更（本来はオブジェクトの中に入れたほうが後々楽になるよ）
         foreach($data_all as $data) {
-            $data->tag_id = Fishing::tag_name($data->tag_id);
+            // タイトルが９文字以上か判定
+            if(mb_strlen($data->title, 'UTF-8') > 9) {
+                if (preg_match("/^[a-zA-Z0-9]+$/", $data->title)) {
+                    // 半角英数のとき
+                    $data->title = substr($data->title, 0, 14)."…";
+                } else {
+                    // 日本語を含むとき
+                    $data->title = mb_substr($data->title, 0, 9)."…";
+                }
+
+            }
+            $data->tag_name = Fishing::tag_name($data->tag_id);
+            $data->img = Fishing::img_set($data->tag_id);
         }
 
         return view('fishing.boardlist', compact('data_all','tag_name','tag'));
