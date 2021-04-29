@@ -24,30 +24,23 @@ class FishingController extends Controller
         $tag = '';
 
         if(!empty($request->tag)) {
-            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(8);;
+            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(10 );
 
             $tag_name = Fishing::tag_name($request->tag);
             $tag = $request->tag;
         }
         else {
-            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(8);
+            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(10);
         }
 
         // タグ名変更（本来はオブジェクトの中に入れたほうが後々楽になるよ）
         foreach($data_all as $data) {
-            // タイトルが９文字以上か判定
-            if(mb_strlen($data->title, 'UTF-8') > 9) {
-                if (preg_match("/^[a-zA-Z0-9]+$/", $data->title)) {
-                    // 半角英数のとき
-                    $data->title = substr($data->title, 0, 14)."…";
-                } else {
-                    // 日本語を含むとき
-                    $data->title = mb_substr($data->title, 0, 9)."…";
-                }
-
-            }
             $data->tag_name = Fishing::tag_name($data->tag_id);
             $data->img = Fishing::img_set($data->tag_id);
+
+            // 投稿内容取得
+            $rtn = Fishing::card_display($data->id);
+            $data->init_content = $rtn->content;
         }
 
         return view('fishing.boardlist', compact('data_all','tag_name','tag'));
@@ -73,7 +66,7 @@ class FishingController extends Controller
     {
         // 入力チェック
         $validatedData = $request->validate([
-            'title' => 'required|max:50',
+            'title' => 'required|max:200',
             'tag' => 'required',
             'content' => 'required|max:500'
         ]);
@@ -116,7 +109,7 @@ class FishingController extends Controller
 
         $display_info->tag_name = Fishing::tag_name($display_info->tag_id);
 
-        $contents = DB::table('bulletin_board_contents')->where('parent_id', $id)->get();
+        $contents = DB::table('bulletin_board_contents')->where('parentid', $id)->get();
 
         return view('fishing.chat', compact('display_info','contents'));
     }

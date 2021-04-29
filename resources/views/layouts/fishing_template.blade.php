@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/button_effects.css') }}">
 
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{{ asset('img/釣りアイコン.png') }}">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -180,7 +183,20 @@
             }
 
             .card-title {
+                vertical-align: top;
                 width: 200px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .initcontent{
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                max-height: 48px;
+                height: 48px;
             }
         </style>
     </head>

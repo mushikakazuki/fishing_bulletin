@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\tag;
+use Illuminate\Support\Facades\DB;
 
 class Fishing {
     public static function tag_name($id) {
@@ -35,5 +36,11 @@ class Fishing {
         if ($tag === 5) {
             return "/img/other.jpg";
         }
+    }
+
+    // カードの初回投稿内容の取得
+    public static function card_display($parentid) {
+        $content = DB::table('bulletin_board_contents')->select('content')->where('parentid', $parentid)->first();
+        return $content;
     }
 }
