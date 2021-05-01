@@ -10,6 +10,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/button_effects.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/tag.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/chat_style.css') }}">
 
         <!-- favicon -->
         <link rel="shortcut icon" href="{{ asset('img/釣りアイコン.png') }}">
@@ -79,35 +81,6 @@
 
             h4.card-title{
                 color: #a0522d;
-            }
-
-            /* tagスタイル */
-            p.tag {
-                position: relative;
-                display: inline-block;
-                margin: 0 .6em;
-                /* margin-left: .6em; */
-                padding: .6em .6em .6em 1.2em;
-                line-height: 1;
-                color: #000;
-                text-decoration: none;
-                background-color: #dcdcdc;
-            }
-            p.tag:before {
-                position: absolute;
-                top: 0;
-                left: -1em;
-                content: '';
-                border-width: 1.1em 1em 1.1em 0;
-                border-style: solid;
-                border-color: transparent #dcdcdc transparent transparent;
-            }
-            p.tag:after {
-                position: absolute;
-                top: center;
-                left: 0;
-                content: '●';
-                color: #000;
             }
 
             /* メインの中のスタイル */

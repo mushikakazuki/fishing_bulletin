@@ -26,8 +26,9 @@ Route::group(['prefix' => "fishing", 'middleware' => "auth"], function() {
     Route::post('store','FishingController@store')->name('Fishing.store');
     Route::get('show/{id}','FishingController@show')->name('Fishing.show');
     // Route::get('edit/{id}','ContactFormController@edit')->name('contact.edit');
-    // Route::post('update/{id}','ContactFormController@update')->name('contact.update');
+    // Route::post('update/{id}','FishingController@update')->name('fishing.update');
     Route::post('destroy/{id}','FishingController@destroy')->name('fishing.destroy');
+    Route::post('content_update/{id}','FishingController@content_update')->name('fishing.content_update');
 });
 
 Auth::routes();

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Services\Fishing;
+use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class FishingController extends Controller
 {
@@ -64,35 +66,38 @@ class FishingController extends Controller
      */
     public function store(Request $request)
     {
-        // 入力チェック
-        $validatedData = $request->validate([
-            'title' => 'required|max:200',
-            'tag' => 'required',
-            'content' => 'required|max:500'
-        ]);
+        // 新規作成時のみ処理を実施
+        if($request->has('create')) {
+            // 入力チェック
+            $validatedData = $request->validate([
+                'title' => 'required|max:200',
+                'tag' => 'required',
+                'content' => 'required|max:500'
+            ]);
 
-        $bulletin_board = new bulletin_board();
+            $bulletin_board = new bulletin_board();
 
-        $bulletin_board->user_id = 1;
-        $bulletin_board->title = $request->title;
-        $bulletin_board->tag_id = $request->tag;
-        $bulletin_board->isClosed = FALSE;
-        $bulletin_board->isDeleted = FALSE;
-        $bulletin_board->tag_id = $request->tag;
+            $bulletin_board->user_id = Auth::id();
+            $bulletin_board->title = $request->title;
+            $bulletin_board->tag_id = $request->tag;
+            $bulletin_board->isClosed = FALSE;
+            $bulletin_board->isDeleted = FALSE;
+            $bulletin_board->tag_id = $request->tag;
 
-        $bulletin_board->save();
+            $bulletin_board->save();
 
-        // この取得方法だと、同時に追加時ずれる可能性あり
-        $id = bulletin_board::max('id');
+            // この取得方法だと、同時に追加時ずれる可能性あり
+            $id = bulletin_board::max('id');
 
-        $bulletin_board_contents = new bulletin_board_contents();
-        $bulletin_board_contents->parentid = intval($id);
-        $bulletin_board_contents->content = $request->content;
-        $bulletin_board_contents->isDeleted = FALSE;
-        $bulletin_board_contents->user_id = 1;
-        $bulletin_board_contents->responseid = 0;
+            $bulletin_board_contents = new bulletin_board_contents();
+            $bulletin_board_contents->parentid = intval($id);
+            $bulletin_board_contents->content = $request->content;
+            $bulletin_board_contents->isDeleted = FALSE;
+            $bulletin_board_contents->user_id = Auth::id();
+            $bulletin_board_contents->responseid = 0;
 
-        $bulletin_board_contents->save();
+            $bulletin_board_contents->save();
+        }
 
         return redirect('fishing/index');
     }
@@ -105,11 +110,18 @@ class FishingController extends Controller
      */
     public function show($id)
     {
+        // タイトルやタグ情報
         $display_info = DB::table('bulletin_boards')->where('id', $id)->first();
-
         $display_info->tag_name = Fishing::tag_name($display_info->tag_id);
 
+        // チャット画面の投稿内容などのデータ
         $contents = DB::table('bulletin_board_contents')->where('parentid', $id)->get();
+
+        // チャット画面の投稿ユーザー情報を取得
+        foreach ($contents as $content) {
+            $user_name = DB::table('users')->select('name')->where('id', $content->user_id)->first();
+            $content->user_name = $user_name->name;
+        }
 
         return view('fishing.chat', compact('display_info','contents'));
     }
@@ -152,5 +164,27 @@ class FishingController extends Controller
         $response->save();
 
         return redirect('fishing/index');
+    }
+
+
+    public function content_update(Request $request, $id)
+    {
+
+        if(!empty($request->content)) {
+            $bulletin_board_contents = new bulletin_board_contents();
+
+            $bulletin_board_contents->user_id = Auth::id();
+            $bulletin_board_contents->parentid = $id;
+            $bulletin_board_contents->responseid = 0;
+            $bulletin_board_contents->content = $request->content;
+            $bulletin_board_contents->isDeleted = False;
+
+            $bulletin_board_contents->save();
+        }
+
+
+
+        return redirect('fishing/show/'.$id);
+
     }
 }

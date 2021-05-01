@@ -40,7 +40,8 @@
                         <strong class="error_message">※{{ $message }}</strong>
                     @enderror
                     <div>
-                    <button type="submit" class="btn btn-primary pr-4 pl-4" style="margin-top: 20px;">作成</button>
+                    <button type="submit" class="btn btn-secondary pr-4 pl-4" style="margin-top: 20px;" name='back'>戻る</button>
+                    <button type="submit" class="btn btn-primary pr-4 pl-4" style="margin-top: 20px; margin-left: 55%" name='create'>作成</button>
                     </div>
                 </div>
             </form>
