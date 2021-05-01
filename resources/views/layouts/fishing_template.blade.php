@@ -8,10 +8,15 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
+        <!-- css -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/button_effects.css') }}">
         <link rel="stylesheet" href="{{ asset('css/tag.css') }}">
         <link rel="stylesheet" href="{{ asset('css/chat_style.css') }}">
+
+        <!-- js -->
+        <script src="{{ asset('js/app.js')}}"></script>
 
         <!-- favicon -->
         <link rel="shortcut icon" href="{{ asset('img/釣りアイコン.png') }}">
