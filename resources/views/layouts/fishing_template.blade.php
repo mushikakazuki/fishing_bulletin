@@ -219,6 +219,7 @@
                     </div>
                 </div>
         @yield('main')
+
         </body>
     </div>
 </html>

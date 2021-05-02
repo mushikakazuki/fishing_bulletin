@@ -2,6 +2,20 @@
 
 @section('main')
 
+<script>
+    function contentText() {
+        message = document.getElementById("message").value;
+        document.getElementById('displayMessage').textContent = message;
+        document.getElementById('registerContent').value = message;
+        if(message.length == 0) {
+            document.getElementById('sent').setAttribute('disabled', true);
+        }
+        else {
+            document.getElementById('sent').removeAttribute('disabled');
+        }
+}
+</script>
+
 <div class="container">
     <div class="row maincontent">
         <div class="col">
@@ -26,9 +40,36 @@
                 </div>
                 <form action="{{ route('fishing.content_update', ['id' => $display_info->id]) }}" method="POST">
                     @csrf
-                    <textarea type="text" class="col-12 d-inline-block" style="height: 15vh; resize: none;" name="content"></textarea>
-                    <input type="submit" class="btn btn-primary mb-5 mt-3">
+                    <textarea type="text" class="col-12 d-inline-block" style="height: 15vh; resize: none;" onchange="contentText()" name="content" id="message"></textarea>
+                    <button type="button" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#sentModel" id="sent" disabled="true">送信</button>
                 </form>
+
+                <!-- モーダル画面 -->
+                <!-- 送信確認 -->
+                <div class="modal fade" id="sentModel" tabindex="-1" role="dialog" aria-labelledby="sentModelLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="sentModelLabel">内容確認</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                下記の内容を登録しますか？
+                                <div id="displayMessage"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                <form action="{{ route('fishing.content_update', ['id' => $display_info->id]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="content" id="registerContent">
+                                    <input type="submit" class="btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

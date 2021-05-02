@@ -169,7 +169,6 @@ class FishingController extends Controller
 
     public function content_update(Request $request, $id)
     {
-
         if(!empty($request->content)) {
             $bulletin_board_contents = new bulletin_board_contents();
 
