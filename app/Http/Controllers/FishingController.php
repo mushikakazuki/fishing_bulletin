@@ -6,8 +6,6 @@ use App\Models\bulletin_board;
 use App\Models\bulletin_board_contents;
 use Illuminate\Http\Request;
 
-
-
 use Illuminate\Support\Facades\DB;
 use App\Services\Fishing;
 use Illuminate\Support\Facades\Auth;
@@ -22,14 +20,21 @@ class FishingController extends Controller
      */
     public function index(Request $request)
     {
-        $tag_name = '';
-        $tag = '';
+        $tag_ids = [];
 
-        if(!empty($request->tag)) {
-            $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->where('tag_id',$request->tag)->paginate(10 );
+        if(!empty($request->tag_ids)) {
+            $q = DB::table('bulletin_boards')->orderBy('updated_at', 'desc');
+            foreach($request->tag_ids as $index => $tag_id) {
+                if($index == 0) {
+                    $q->where('tag_id', $tag_id);
+                }
+                else {
+                    $q->orwhere('tag_id', $tag_id);
+                }
+            }
+            $data_all = $q->paginate(10);
 
-            $tag_name = Fishing::tag_name($request->tag);
-            $tag = $request->tag;
+            $tag_ids = $request->tag_ids;
         }
         else {
             $data_all = DB::table('bulletin_boards')->orderBy('updated_at', 'desc')->paginate(10);
@@ -45,7 +50,7 @@ class FishingController extends Controller
             $data->init_content = $rtn->content;
         }
 
-        return view('fishing.boardlist', compact('data_all','tag_name','tag'));
+        return view('fishing.boardlist', compact('data_all','tag_ids'));
     }
 
     /**

@@ -38,15 +38,17 @@
                     @endforeach
                     <!-- チャット画面 -->
                 </div>
-                <form action="{{ route('fishing.content_update', ['id' => $display_info->id]) }}" method="POST">
+                <!-- 戻る専用フォーム　※textエリアの内容はmodalに値を渡している -->
+                <form action="{{ route('fishing.index') }}" method="GET">
                     @csrf
                     <textarea type="text" class="col-12 d-inline-block" style="height: 15vh; resize: none;" onchange="contentText()" name="content" id="message"></textarea>
-                    <button type="button" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#sentModel" id="sent" disabled="true">送信</button>
+                    <button type="submit" class="btn btn-secondary mb-5 mt-3">戻る</button>
+                    <button type="button" class="btn btn-primary mb-5 mt-3" style="float: right;" data-toggle="modal" data-target="#sentModel" id="sent" disabled="true">送信</button>
                 </form>
 
                 <!-- モーダル画面 -->
-                <!-- 送信確認 -->
-                <div class="modal fade" id="sentModel" tabindex="-1" role="dialog" aria-labelledby="sentModelLabel" aria-hidden="true">
+                <!-- 送信確認&登録 -->
+                <div class="modal fade" data-backdrop="static" id="sentModel" tabindex="-1" role="dialog" aria-labelledby="sentModelLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
