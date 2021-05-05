@@ -176,6 +176,19 @@
                 max-height: 48px;
                 height: 48px;
             }
+
+            .res-style{
+                cursor: pointer;
+                cursor: hand;
+                background: #aaaaaa;
+                color:white;
+                padding: 0px 10px;
+                border-radius: 10px;
+            }
+
+            .chat_rescontent{
+                border-bottom: solid #AAA;
+            }
         </style>
     </head>
     <body>

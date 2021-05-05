@@ -126,6 +126,20 @@ class FishingController extends Controller
         foreach ($contents as $content) {
             $user_name = DB::table('users')->select('name')->where('id', $content->user_id)->first();
             $content->user_name = $user_name->name;
+
+            // 返信ありのとき（@で始まり,で区切っているとき）
+            if(preg_match("/^@/",$content->content) && preg_match("/,/",$content->content)) {
+                // [0]返信先情報
+                // [1]返信内容情報
+                $res_content = explode(',',$content->content, 2);
+
+                // [0]返信ユーザー
+                // [1]返信内容情報
+                $user_resmessage = explode(' ',$res_content[0], 2);
+
+                $content->rescontent = $user_resmessage[0].'　'.$user_resmessage[1];
+                $content->content = $res_content[1];
+            }
         }
 
         return view('fishing.chat', compact('display_info','contents'));
@@ -179,14 +193,22 @@ class FishingController extends Controller
 
             $bulletin_board_contents->user_id = Auth::id();
             $bulletin_board_contents->parentid = $id;
-            $bulletin_board_contents->responseid = 0;
-            $bulletin_board_contents->content = $request->content;
+
+            if(!empty($request->resmessage)) {
+                $message = $request->resmessage . ',' . $request->content;
+                $message = nl2br($message);
+                $bulletin_board_contents->content = $message;
+                $bulletin_board_contents->responseid = $request->resid;
+            }
+            else {
+                $bulletin_board_contents->content = $request->content;
+                $bulletin_board_contents->responseid = 0;
+            }
+
             $bulletin_board_contents->isDeleted = False;
 
             $bulletin_board_contents->save();
         }
-
-
 
         return redirect('fishing/show/'.$id);
 

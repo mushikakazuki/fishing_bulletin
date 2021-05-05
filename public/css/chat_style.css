@@ -45,6 +45,8 @@
     line-height: 1.5;
     word-break: break-word;
     /*   align-items: center; */
+
+    flex-direction: column;
 }
 
 .balloon_r .says {

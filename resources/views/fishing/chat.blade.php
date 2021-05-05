@@ -3,6 +3,7 @@
 @section('main')
 
 <script>
+    // モーダルにtextareaの情報を渡す
     function contentText() {
         message = document.getElementById("message").value;
         document.getElementById('displayMessage').textContent = message;
@@ -13,7 +14,27 @@
         else {
             document.getElementById('sent').removeAttribute('disabled');
         }
-}
+    }
+
+    // 返信設定
+    function response(user_name, message, id)
+    {
+        document.getElementById('responseid').value = id;
+        displayContent = '@' + user_name + '   ' + message;
+        console.log(displayContent);
+        document.getElementById('responseArea').value = displayContent;
+        document.getElementById('responsemessage').value = displayContent;
+    }
+
+    function replace(content) {
+        str = content.split('\n');
+        return str.join(' ');
+    }
+
+    // アンカーリンク
+    function pagelink(resid) {
+        window.location.hash = resid;
+    }
 </script>
 
 <div class="container">
@@ -25,23 +46,43 @@
                 <div style="height: 55vh; background-color:#a8d8ea; overflow-x: auto">
                     <!-- チャット画面 -->
                     @foreach ($contents as $content)
+                    <!-- アンカーリンク用 -->
+                    <a name="{{ $content->id }}"></a>
                         @if(  Auth::id() === $content->user_id )
                             <div class="balloon_r mt-4">
-                                <div class="says"><p>{{$content->content}}</div>
+                                <div class="says">
+                                    @if(isset($content->rescontent))
+                                        <div onclick="pagelink('{{$content->responseid}}')">
+                                            <p>返信先 | 返信内容</p>
+                                            <p class="chat_rescontent">{{ $content->rescontent }}</p>
+                                        </div>
+                                    @endif
+                                    <p>{{ $content->content }}</p>
+                                </div>
                             </div>
                         @else
                             <div class="balloon_l">
-                                <div class="d-flex chat_user_name">{{$content->user_name}}</div>
-                                <p class="says">{{$content->content}}</p>
+                                <div class="d-flex chat_user_name">{{$content->user_name}}<span class="ml-3 res-style" onclick="response( '{{ $content->user_name }}',replace(`{{ $content->content }}`) , '{{ $content->id }}' )">返信</span></div>
+                                <div class="says">
+                                    @if(isset($content->rescontent))
+                                        <div onclick="pagelink('{{$content->responseid}}')">
+                                            <p>返信先 | 返信内容</p>
+                                            <p class="chat_rescontent">{{ $content->rescontent }}</p>
+                                        </div>
+                                    @endif
+                                    <p>{{ $content->content }}</p>
+                                </div>
                             </div>
                         @endif
                     @endforeach
                     <!-- チャット画面 -->
                 </div>
+
                 <!-- 戻る専用フォーム　※textエリアの内容はmodalに値を渡している -->
                 <form action="{{ route('fishing.index') }}" method="GET">
                     @csrf
-                    <textarea type="text" class="col-12 d-inline-block" style="height: 15vh; resize: none;" onchange="contentText()" name="content" id="message"></textarea>
+                    <input  type="text" class="col-12 form-control" name="response" id="responseArea" style="text-overflow: ellipsis" readonly>
+                    <textarea type="text" class="col-12 d-block" style="height: 15vh; resize: none;" onchange="contentText()" name="content" id="message"></textarea>
                     <button type="submit" class="btn btn-secondary mb-5 mt-3">戻る</button>
                     <button type="button" class="btn btn-primary mb-5 mt-3" style="float: right;" data-toggle="modal" data-target="#sentModel" id="sent" disabled="true">送信</button>
                 </form>
@@ -65,7 +106,12 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                                 <form action="{{ route('fishing.content_update', ['id' => $display_info->id]) }}" method="POST">
                                     @csrf
+                                    <!-- 送信内容 -->
                                     <input type="hidden" name="content" id="registerContent">
+
+                                    <!-- 返信内容情報 -->
+                                    <input type="hidden" name="resid" id="responseid">
+                                    <input type="hidden" name="resmessage" id="responsemessage">
                                     <input type="submit" class="btn btn-primary">
                                 </form>
                             </div>
