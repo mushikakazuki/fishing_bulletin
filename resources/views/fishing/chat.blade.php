@@ -21,9 +21,9 @@
     {
         document.getElementById('responseid').value = id;
         displayContent = '@' + user_name + '   ' + message;
-        console.log(displayContent);
         document.getElementById('responseArea').value = displayContent;
         document.getElementById('responsemessage').value = displayContent;
+        document.getElementById('resCancel').removeAttribute('disabled');
     }
 
     function replace(content) {
@@ -34,6 +34,13 @@
     // アンカーリンク
     function pagelink(resid) {
         window.location.hash = resid;
+    }
+
+    // 送信取り消し時、宛先削除
+    function responseCancel() {
+        document.getElementById('resCancel').setAttribute('disabled', true);
+        document.getElementById('responseArea').value = '';
+        document.getElementById('responsemessage').value = '';
     }
 </script>
 
@@ -83,8 +90,12 @@
                     @csrf
                     <input  type="text" class="col-12 form-control" name="response" id="responseArea" style="text-overflow: ellipsis" readonly>
                     <textarea type="text" class="col-12 d-block" style="height: 15vh; resize: none;" onchange="contentText()" name="content" id="message"></textarea>
-                    <button type="submit" class="btn btn-secondary mb-5 mt-3">戻る</button>
-                    <button type="button" class="btn btn-primary mb-5 mt-3" style="float: right;" data-toggle="modal" data-target="#sentModel" id="sent" disabled="true">送信</button>
+
+                    <div class="button_grop">
+                        <button type="submit" class="btn btn-secondary mb-5 mt-3 mr-auto">戻る</button>
+                        <button type="button" class="btn btn-primary mb-5 mt-3 mr-4" id="resCancel" disabled="true" data-toggle="modal" data-target="#resCancelModal">返信取消</button>
+                        <button type="button" class="btn btn-primary mb-5 mt-3" data-toggle="modal" data-target="#sentModel" id="sent" disabled="true">送信</button>
+                    </div>
                 </form>
 
                 <!-- モーダル画面 -->
@@ -114,6 +125,27 @@
                                     <input type="hidden" name="resmessage" id="responsemessage">
                                     <input type="submit" class="btn btn-primary">
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 送信確認&登録 -->
+                <div class="modal fade" data-backdrop="static" id="resCancelModal" tabindex="-1" role="dialog" aria-labelledby="resCancelModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="resCancelModalLabel">削除確認</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                返信先を削除しますか？
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                <button type="button" class="btn btn-danger ml-2" data-dismiss="modal" onclick="responseCancel()">削除</button>
                             </div>
                         </div>
                     </div>

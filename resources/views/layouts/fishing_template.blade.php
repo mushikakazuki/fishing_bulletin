@@ -189,6 +189,11 @@
             .chat_rescontent{
                 border-bottom: solid #AAA;
             }
+
+            .button_grop{
+                display: flex;
+                justify-content: flex-end;
+            }
         </style>
     </head>
     <body>
