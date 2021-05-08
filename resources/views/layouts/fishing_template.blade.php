@@ -197,11 +197,6 @@
         </style>
     </head>
     <body>
-    <!-- <div class="width: 100%">
-        <figure>
-            <img src="{{ URL::to('/') }}/storage/fishing_top_s.jpg" alt="fishing_top">
-        </figure>
-    </div> -->
 
         <!-- <div class="container">
             <div class="col-sm"> -->

@@ -89,7 +89,7 @@
                 <form action="{{ route('fishing.index') }}" method="GET">
                     @csrf
                     <input  type="text" class="col-12 form-control" name="response" id="responseArea" style="text-overflow: ellipsis" readonly>
-                    <textarea type="text" class="col-12 d-block" style="height: 15vh; resize: none;" onchange="contentText()" name="content" id="message"></textarea>
+                    <textarea type="text" class="col-12 d-block" style="height: 15vh; resize: none;" oninput="contentText()" name="content" id="message"></textarea>
 
                     <div class="button_grop">
                         <button type="submit" class="btn btn-secondary mb-5 mt-3 mr-auto">戻る</button>

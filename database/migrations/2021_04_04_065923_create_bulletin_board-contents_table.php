@@ -23,7 +23,6 @@ class CreateBulletinBoardContentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('responseid')->references('id')->on('bulletin_board_contents');
             $table->foreign('parentid')->references('id')->on('bulletin_boards');
         });
     }

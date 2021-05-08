@@ -24,12 +24,12 @@
                         </div>
 
                         <form action="#" method="GET">
-                            <div class="modal-body">
-                                <input type="checkbox" value="1" name="tag_ids[]" @if(in_array(1,$tag_ids,false)) checked @endif>釣果
-                                <input type="checkbox" value="2" name="tag_ids[]" @if(in_array(2,$tag_ids,false)) checked @endif>釣友
-                                <input type="checkbox" value="3" name="tag_ids[]" @if(in_array(3,$tag_ids,false)) checked @endif>雑談
-                                <input type="checkbox" value="4" name="tag_ids[]" @if(in_array(4,$tag_ids,false)) checked @endif>質問
-                                <input type="checkbox" value="5" name="tag_ids[]" @if(in_array(5,$tag_ids,false)) checked @endif>その他
+                            <div class="modal-body d-flex" style="gap: 50px">
+                                <label><input type="checkbox" value="1" name="tag_ids[]" @if(in_array(1,$tag_ids,false)) checked @endif>釣果</label>
+                                <label><input type="checkbox" value="2" name="tag_ids[]" @if(in_array(2,$tag_ids,false)) checked @endif>釣友</label>
+                                <label><input type="checkbox" value="3" name="tag_ids[]" @if(in_array(3,$tag_ids,false)) checked @endif>雑談</label>
+                                <label><input type="checkbox" value="4" name="tag_ids[]" @if(in_array(4,$tag_ids,false)) checked @endif>質問</label>
+                                <label><input type="checkbox" value="5" name="tag_ids[]" @if(in_array(5,$tag_ids,false)) checked @endif>その他</label>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
