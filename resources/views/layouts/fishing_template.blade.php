@@ -99,14 +99,14 @@
                 width: 16rem;
             }
 
-            header {
+            .sub-header {
                 position: relative;
                 height: 50vh;
                 background: url(/img/top_image_2.jpg) center / cover;
                 background-position: 50% 60%;
             }
 
-            header::before {
+            .sub-header::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -232,44 +232,41 @@
     </head>
     <body>
 
-            <div class="position-ref full-height">
-                <div class="flex-center">
-                    <!-- ヘッダー -->
-                    <div class="top-left links  full-height">
-                        <a href="{{ url('/') }}">
-                            <img src="/img/ルアーアイコン2.svg" style="
-                            width: 100px; height: 80px;">
-                        </a>
+        <div class="position-ref">
+            <!-- ヘッダー -->
+            <header class="links full-height d-flex align-items-center">
+                <a href="{{ url('/') }}" style="margin-right: auto">
+                    <img src="/img/ルアーアイコン2.svg" style="
+                    width: 100px; height: 80px;">
+                </a>
 
-                        <a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a>
-                        <a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a>
-                        <a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a>
+                <a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a>
+                <a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a>
+                <a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a>
 
-                        <!-- <nav id="humberger-menu">
-                            <ul class="menu-style">
-                                <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a></li>
-                                <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a></li>
-                                <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a></li>
-                            </ul>
-                        </nav> -->
+                <!-- <nav id="humberger-menu">
+                    <ul class="menu-style">
+                        <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a></li>
+                        <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a></li>
+                        <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a></li>
+                    </ul>
+                </nav> -->
 
+                @if (Route::has('login'))
+                    <div class="links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
                     </div>
-                    @if (Route::has('login'))
-                        <div class="top-right links full-height">
-                            @auth
-                                <a href="{{ url('/home') }}">Home</a>
-                            @else
-                                <a href="{{ route('login') }}">Login</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
-
-                </div>
-            </div>
+                @endif
+            </header>
+        </div>
         @yield('main')
 
         </body>
