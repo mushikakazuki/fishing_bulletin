@@ -99,11 +99,6 @@
                 width: 16rem;
             }
 
-            /* カード説明開始位置指定 */
-            .card-description{
-                /* margin: 200px 0px */
-            }
-
             header {
                 position: relative;
                 height: 50vh;
@@ -194,43 +189,87 @@
                 display: flex;
                 justify-content: flex-end;
             }
+
+            .img-height {
+                max-height: 126.667px;
+            }
+
+            .checkbox-style{
+                padding: 50px;
+                gap: 80px;
+                flex-wrap: wrap;
+            }
+
+
+            .top-card-css {
+                gap: 50px;
+                justify-content: center;
+            }
+
+            /* スマホ版時のCSS */
+            @media screen and (max-width: 640px) {
+                .checkbox-style{
+                    padding: 50px;
+                    gap: 50px;
+                    flex-wrap:wrap;
+                }
+
+                .form_position {
+                    padding-top: 20px;
+                    padding-left: 0px;
+                }
+
+                .top-card-style {
+                    justify-content: center;
+                }
+
+                .top-card-css {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
         </style>
     </head>
     <body>
 
-        <!-- <div class="container">
-            <div class="col-sm"> -->
-                <div class="position-ref full-height">
-                    <div class="flex-center">
-                        <!-- ヘッダー -->
-                        <div class="top-left links  full-height">
-                            <!-- <a href="{{ url('/') }}">Fising</a> -->
-                            <a href="{{ url('/') }}">
-                                <img src="/img/ルアーアイコン2.svg" style="
-                                width: 100px; height: 80px;">
-                            </a>
+            <div class="position-ref full-height">
+                <div class="flex-center">
+                    <!-- ヘッダー -->
+                    <div class="top-left links  full-height">
+                        <a href="{{ url('/') }}">
+                            <img src="/img/ルアーアイコン2.svg" style="
+                            width: 100px; height: 80px;">
+                        </a>
 
-                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a>
-                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a>
-                            <!-- <a href="{{url('/fishing/index')}}" class="text-dark top_headr">みんなの釣果</a> -->
-                            <a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a>
-                        </div>
+                        <a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a>
+                        <a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a>
+                        <a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a>
 
-                        @if (Route::has('login'))
-                            <div class="top-right links full-height">
-                                @auth
-                                    <a href="{{ url('/home') }}">Home</a>
-                                @else
-                                    <a href="{{ route('login') }}">Login</a>
+                        <!-- <nav id="humberger-menu">
+                            <ul class="menu-style">
+                                <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">釣り初心者</a></li>
+                                <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">交流所</a></li>
+                                <li><a href="{{url('/fishing/index')}}" class="text-dark top_headr">イベント</a></li>
+                            </ul>
+                        </nav> -->
 
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}">Register</a>
-                                    @endif
-                                @endauth
-                            </div>
-                        @endif
                     </div>
+                    @if (Route::has('login'))
+                        <div class="top-right links full-height">
+                            @auth
+                                <a href="{{ url('/home') }}">Home</a>
+                            @else
+                                <a href="{{ route('login') }}">Login</a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}">Register</a>
+                                @endif
+                            @endauth
+                        </div>
+                    @endif
+
                 </div>
+            </div>
         @yield('main')
 
         </body>

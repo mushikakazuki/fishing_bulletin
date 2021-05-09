@@ -24,7 +24,7 @@
                         </div>
 
                         <form action="#" method="GET">
-                            <div class="modal-body d-flex" style="gap: 50px">
+                            <div class="modal-body d-flex checkbox-style">
                                 <label><input type="checkbox" value="1" name="tag_ids[]" @if(in_array(1,$tag_ids,false)) checked @endif>釣果</label>
                                 <label><input type="checkbox" value="2" name="tag_ids[]" @if(in_array(2,$tag_ids,false)) checked @endif>釣友</label>
                                 <label><input type="checkbox" value="3" name="tag_ids[]" @if(in_array(3,$tag_ids,false)) checked @endif>雑談</label>
@@ -45,16 +45,16 @@
                 @foreach($data_all as $index => $data)
                 <!-- <a href="{{ route('Fishing.show',['id' => $data->id]) }}"> -->
                 <a href="{{ route('Fishing.show',['id' => $data->id ]) }}">
-                <div class="card mb-3 d-inline-block @if($index % 2 === 0) mr-4 @endif" style="max-width: 540px;">
+                <div class="card mb-3 d-md-inline-flex d-sm-flex" style="max-width: 540px; ">
                         <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="{{ asset($data->img)}}" alt="img" class="card-img" style="height: 126.667px;">
+                            <div class="col-md-4 col-sm-4">
+                                <img src="{{ asset($data->img)}}" alt="img" class="card-img img-height">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-sm-8">
                                 <div class="card-body button-4">
                                     <div class="eff-4"></div>
                                     <p class="tag">{{$data->tag_name}}</p>
-                                    <h5 class="card-title d-inline-block mr-2 pt-2">{{$data->title}}</h5>
+                                    <h5 class="card-title d-inline-block">{{$data->title}}</h5>
                                     <p class="card-text initcontent">{{$data->init_content}}</p>
                                 </div>
                             </div>

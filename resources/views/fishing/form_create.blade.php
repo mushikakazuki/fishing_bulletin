@@ -3,14 +3,14 @@
 @section('main')
 <div class="container">
     <div class="row maincontent">
-        <div class="col-8 mx-auto">
-            <form action="{{ route('Fishing.store') }}" method="POST" id="formBox">
-                <h1 class="pt-3 pl-4">新規作成</h1>
+        <div class="col-12 d-flex justify-content-center">
+            <form action="{{ route('Fishing.store') }}" method="POST" id="formBox" class="col-12 col-md-8">
+                <h1 class="pt-1 pl-1 pt-md-3 pl-md-4">新規作成</h1>
                 @csrf
                 <div class="form_position">
                     <h2 class="form-title d-inline-block">タイトル</h2>
                     <div class="d-inline-block error_message">※必須</div>
-                    <input class="form-control @error('title') is-invalid @enderror col-6" name="title" type="text" placeholder="タイトルを入力してください" value="{{ old('title') }}">
+                    <input class="form-control @error('title') is-invalid @enderror col-12 col-md-6" name="title" type="text" placeholder="タイトルを入力してください" value="{{ old('title') }}">
                     @error('title')
                         <strong class="error_message d-block">※{{ $message }}</strong>
                     @enderror
@@ -18,7 +18,7 @@
                     <h2 class="mt-4 form-title d-inline-block">タグ設定</h2>
                     <div class="d-inline-block error_message">※必須</div>
 
-                    <select name="tag" class="form-control @error('tag') is-invalid @enderror" style="width: 15vw;">
+                    <select name="tag" class="form-control col-12 col-md-4 @error('tag') is-invalid @enderror">
                         <option value="">-- 選択してください --</option>
                         <option value="1" @if(old('tag') === "1") selected @endif>釣果</option>
                         <option value="2" @if(old('tag') === "2") selected @endif>釣友</option>
@@ -35,15 +35,15 @@
 
                     <h2 class="mt-4 d-inline-block form-title">投稿内容</h2>
                     <div class="d-inline-block error_message">※必須</div>
-                    <textarea class="form-control @error('content') is-invalid @enderror col-10 textarea" name="content" type="text">{{ old('content') }}</textarea>
+                    <textarea class="form-control @error('content') is-invalid @enderror col-12 col-md-11 textarea" name="content" type="text">{{ old('content') }}</textarea>
                     @error('content')
                         <strong class="error_message">※{{ $message }}</strong>
                     @enderror
-                    <div>
-                    <button type="submit" class="btn btn-secondary pr-4 pl-4" style="margin-top: 20px;" name='back'>戻る</button>
-                    <button type="submit" class="btn btn-primary pr-4 pl-4" style="margin-top: 20px; margin-left: 55%" name='create'>作成</button>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-secondary" style="margin-top: 20px;" name='back'>戻る</button>
+                        <button type="submit" class="btn btn-primary ml-auto mr-md-5 " style="margin-top: 20px;" name='create'>作成</button>
                     </div>
-                </div>
+                </>
             </form>
         </div>
     </div>
