@@ -5,11 +5,11 @@
 <div class="container">
     <div class="row maincontent">
         <div class="col">
-            <div style="margin-bottom: 15px" class="mx-auto">
-                <h1 class="mr-4">交流所</h1>
-                <div style="text-align: right;" class="pd-2">
+            <div style="margin-bottom: 15px" class="d-flex justify-content-flex-end">
+                <h1 class="mr-auto">交流所</h1>
+                <div class="pd-2 pt-2">
                     <button data-toggle="modal" data-target="#selectmodal" class="btn mr-2 @if(!empty($tag_ids)) btn-info @else btn-outline-info @endif">絞り込み</button>
-                    <a href="create" class="btn btn-outline-primary ml-4">新規作成</a>
+                    <a href="create" class="btn btn-outline-primary ml-1 ml-md-4">新規作成</a>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                 @foreach($data_all as $index => $data)
                 <!-- <a href="{{ route('Fishing.show',['id' => $data->id]) }}"> -->
                 <a href="{{ route('Fishing.show',['id' => $data->id ]) }}">
-                <div class="card mb-3 d-md-inline-flex d-sm-flex" style="max-width: 540px; ">
+                <div class="card mb-3 d-md-inline-flex d-sm-flex" style="max-width: 540px;">
                         <div class="row no-gutters">
                             <div class="col-md-4 col-sm-4">
                                 <img src="{{ asset($data->img)}}" alt="img" class="card-img img-height">

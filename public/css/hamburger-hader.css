@@ -1,0 +1,48 @@
+@media screen and (max-width: 640px) {
+    #hamburger .btn-gNav span {
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background: #666;
+        border-radius: 10px;
+        -webkit-transition: all 400ms;
+        transition: all 400ms;
+    }
+    #hamburger .btn-gNav span:nth-child(1) {
+        top: 0;
+    }
+    #hamburger .btn-gNav span:nth-child(2) {
+        top: 10px;
+    }
+    #hamburger .btn-gNav span:nth-child(3) {
+        top: 20px;
+    }
+    #hamburger .btn-gNav {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 24px;
+        z-index: 5;
+    }
+    #gNav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100%;
+        z-index: 4;
+        overflow-y: auto;
+        background-color: #fffafa;
+    }
+    #gNav.open {
+        right: 0px;
+    }
+    #gNav .gNav-menu {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}

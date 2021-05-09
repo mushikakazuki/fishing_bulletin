@@ -2,7 +2,7 @@
 
 @section('main')
     <div>
-        <header class="mt-4 sub-header">
+        <header class="sub-header">
             <div class="header-content" style="color: #f0f2f5;">
                 釣りを今まで以上に楽しいものに<br>
                 新しいコミュニティ
