@@ -2,7 +2,7 @@
 
 @section('main')
 <div class="container">
-    <div class="row maincontent">
+    <div class="row maincontent" style="padding-bottom: 40px; border-radius: 50px">
         <div class="col-12 d-flex justify-content-center">
             <form action="{{ route('Fishing.store') }}" method="POST" id="formBox" class="col-12 col-md-8">
                 <h1 class="pt-1 pl-1 pt-md-3 pl-md-4">新規作成</h1>

@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row maincontent">
-        <div class="col">
+        <div class="col-12">
             <div style="margin-bottom: 15px" class="d-flex justify-content-flex-end">
                 <h1 class="mr-auto">交流所</h1>
                 <div class="pd-2 pt-2">
@@ -45,7 +45,7 @@
                 @foreach($data_all as $index => $data)
                 <!-- <a href="{{ route('Fishing.show',['id' => $data->id]) }}"> -->
                 <a href="{{ route('Fishing.show',['id' => $data->id ]) }}">
-                <div class="card mb-3 d-md-inline-flex d-sm-flex" style="max-width: 540px;">
+                <div class="card mb-3 d-md-inline-flex d-sm-flex @if ($index % 2 == 1) card-position @endif" style="max-width: 540px;">
                         <div class="row no-gutters">
                             <div class="col-md-4 col-sm-4">
                                 <img src="{{ asset($data->img)}}" alt="img" class="card-img img-height">

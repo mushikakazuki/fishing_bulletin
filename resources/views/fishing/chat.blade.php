@@ -49,8 +49,8 @@
         <div class="col">
             <p class="tag ml-3 mb-4">{{ $display_info->tag_name }}</p>
             <h1 style="word-break: break-word;" class="mb-3">{{ $display_info->title }}</h1>
-            <div style="background-color: #ffffd2; height:70vh">
-                <div style="height: 55vh; background-color:#a8d8ea; overflow-x: auto">
+            <div style="height:70vh">
+                <div style="height: 40vh; background-color:#a8d8ea; overflow-x: auto">
                     <!-- チャット画面 -->
                     @foreach ($contents as $content)
                     <!-- アンカーリンク用 -->
